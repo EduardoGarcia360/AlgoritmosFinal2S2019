@@ -217,6 +217,8 @@ void menuGestion (string control, string nombreArchivo){
 		cin.ignore();
 		if(menu==1){
 			agregar(nombreArchivo, control);
+		}else if(menu==2){
+			buscar(nombreArchivo);
 		}else if(menu==3){
 			eliminar(nombreArchivo);
 		}else if(menu==5){
