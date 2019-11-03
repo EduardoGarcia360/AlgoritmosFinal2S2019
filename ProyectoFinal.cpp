@@ -4,8 +4,9 @@
 
 using namespace std;
 
-
-
+/***********************************************
+				A G R E G A R
+***********************************************/
 //AGREGA UN ALUMNO AL ARCHIVO ABIERTO
 void agregarAlumno (FILE * archivo) {
 	char carnet[20]="", nombre[35]="", seccion[20]="";
@@ -64,6 +65,9 @@ void agregar (string nombreArchivo, string control) {
 	}
 }
 
+/***********************************************
+				M O S T R A R
+***********************************************/
 //MOSTRAR CONTENIDO DEL ARCHIVO SEPARANDOLO POR PARTES
 void analizarLinea (char linea[], int noLinea) {
 	char * token = strtok(linea, ";");
@@ -104,6 +108,11 @@ void mostrar (string nombreArchivo) {
 	}
 }
 
+/***********************************************
+				E L I M I N A R
+***********************************************/
+//CON LA LINEA A ELIMINAR ELEGIDA POR EL USUARIO SE PROCEDE
+//A REMOVERLA DEL ARCHIVO ORIGEN
 void procesoEliminar (int lineaEliminar, string nombreArchivoIn){
 	FILE * archivoEntrada = fopen(nombreArchivoIn.c_str(), "a+");
 	if(archivoEntrada == NULL){
@@ -144,20 +153,59 @@ void procesoEliminar (int lineaEliminar, string nombreArchivoIn){
 	rename("temp.txt", nombreArchivoIn.c_str());
 }
 
+//SE LE PRESENTA AL USUARIO LOS DATOS ALMACENADOS EN EL ARCHIVO
+//EL USUARIO ELIGE QUE LINEA BORRAR
 void eliminar (string nombreArchivo) {
-	FILE * archivoMostrar = fopen(nombreArchivo.c_str(), "a+");
-//	FILE * archivo = fopen(nombreArchivo.c_str(), "a+");
-	if(archivoMostrar != NULL){
+	FILE * archivo = fopen(nombreArchivo.c_str(), "a+");
+	if(archivo != NULL){
 		int linea;
-		mostrarDatos(archivoMostrar);
-		fclose(archivoMostrar);
+		mostrarDatos(archivo);
+		fclose(archivo);
 		cout<<"elija la linea a borrar:"<<endl;
 		cin>>linea;
 		procesoEliminar(linea, nombreArchivo);
-//		fclose(archivo);
 	}
 }
 
+/***********************************************
+				B U S C A R
+***********************************************/
+void buscarEnLinea (char linea[], char busqueda[]) {
+	char * token = strtok(linea, ";");
+	while (token != NULL){
+		if(strcmp(token, busqueda) == 0){
+			cout<<"valor encontrado"<<endl;
+		}
+		token = strtok(NULL, ";");
+	}
+}
+
+void buscar (string nombreArchivo) {
+	char busqueda[20] = "";
+	cout<<"ingrese una palabra para buscar:"<<endl;
+	cin.getline(busqueda, 20);
+	FILE * archivo = fopen(nombreArchivo.c_str(), "a+");
+	if (archivo == NULL){
+		cout<<"No se ha podido abrir el archivo: "<<nombreArchivo<<endl;
+		return;
+	}
+	
+	char linea[1000]="", lineaTmp[1000]="";
+	while(feof(archivo) == 0){
+		fgets(lineaTmp, 1000, archivo);
+		//SE QUITA EL "SALTO DE LINEA (\n)" PARA DEJAR SOLO LA LINEA NORMAL
+		char* lineaSinSalto = strtok(lineaTmp, "\n");
+		//SE PASA LA LINEA SIN SALTO AL METODO ANALIZAR LINEA PARA QUE SE MUESTRE
+		strcpy(linea, lineaSinSalto);
+		buscarEnLinea(linea, busqueda);
+	}
+	cin.ignore();
+	fclose(archivo);
+}
+
+/***********************************************
+		M E N U S D E G E S T I O N
+***********************************************/
 //MENU DE GESTION PARA ALUMNOS O PARA BIBLIOTECA
 void menuGestion (string control, string nombreArchivo){
 	int menu=0;
