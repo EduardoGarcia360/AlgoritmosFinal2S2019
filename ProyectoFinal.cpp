@@ -148,8 +148,8 @@ void procesoEliminar (int lineaEliminar, string nombreArchivoIn){
 	char lineaArchivoInTmp[1000]="", lineaArchivoIn[1000]="";
 	int noLineaArchivoIn = 1;
 	
-	while(feof(archivoEntrada) == 0){
-		fgets(lineaArchivoInTmp, 1000, archivoEntrada);
+	while(fgets(lineaArchivoInTmp, 1000, archivoEntrada)){
+		fputs(lineaArchivoInTmp, stdout);
 		//SE QUITA EL "SALTO DE LINEA (\n)" PARA DEJAR SOLO LA LINEA NORMAL
 		char* lineaSinSalto = strtok(lineaArchivoInTmp, "\n");
 		//SE PASA LA LINEA SIN SALTO AL METODO ANALIZAR LINEA PARA QUE SE MUESTRE
