@@ -1,1 +1,1 @@
-| nombre del libro: solita; | autor del libro: brian duarte; | editorial santillana; | estado del libro: prestado
+ solita; brian duarte;  santillana;  prestado

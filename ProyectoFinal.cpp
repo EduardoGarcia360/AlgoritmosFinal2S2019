@@ -20,7 +20,7 @@ void agregarAlumno (FILE * archivo) {
 		cin.getline(nombre, 35);
 		cout<<"ingrese la seccion"<<endl;
 		cin.getline(seccion, 20);
-		fprintf(archivo, "|carnet: %s; | nombre: %s; | seccion: %s\n", carnet, nombre, seccion);
+		fprintf(archivo, " %s; %s; %s\n", carnet, nombre, seccion);
 		cout<<"desea agregar otro? (s/n)"<<endl;
 		cin>>otro;
 		cin.ignore();
@@ -44,7 +44,7 @@ void agregarLibro (FILE * archivo) {
 		cin.getline(prestado, 35);
 	
 		
-		fprintf(archivo, "| nombre del libro: %s; | autor del libro: %s; | editorial %s; | estado del libro: %s\n", nombre, autor, editorial,prestado);
+		fprintf(archivo, " %s; %s;  %s;  %s\n", nombre, autor, editorial,prestado);
 		cout<<"desea agregar otro? (s/n)"<<endl;
 		cin>>otro;
 		cin.ignore();
