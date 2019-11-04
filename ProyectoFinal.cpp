@@ -9,6 +9,8 @@ using namespace std;
 ***********************************************/
 //AGREGA UN ALUMNO AL ARCHIVO ABIERTO
 void agregarAlumno (FILE * archivo) {
+	system("cls");
+	cout<<"***** Bienvenido a la opcion de agregar ***** "<<endl;
 	char carnet[20]="", nombre[35]="", seccion[20]="";
 	string otro = "s";
 	while (otro == "s"){
@@ -18,7 +20,7 @@ void agregarAlumno (FILE * archivo) {
 		cin.getline(nombre, 35);
 		cout<<"ingrese la seccion"<<endl;
 		cin.getline(seccion, 20);
-		fprintf(archivo, "%s;%s;%s\n", carnet, nombre, seccion);
+		fprintf(archivo, "|carnet: %s; | nombre: %s; | seccion: %s\n", carnet, nombre, seccion);
 		cout<<"desea agregar otro? (s/n)"<<endl;
 		cin>>otro;
 		cin.ignore();
@@ -27,7 +29,9 @@ void agregarAlumno (FILE * archivo) {
 
 //AGREGA UN LIBRO AL ARCHIVO ABIERTO
 void agregarLibro (FILE * archivo) {
-	char nombre[35]="", autor[35]="", editorial[35]="";
+	system("cls");
+	cout<<"***** Bienvenido a la opcion de agregar *****  "<<endl;
+	char nombre[35]="", autor[35]="", editorial[35]="",prestado[35]="";
 	string otro = "s";
 	while (otro == "s"){
 		cout<<"ingrese el nombre"<<endl;
@@ -36,7 +40,11 @@ void agregarLibro (FILE * archivo) {
 		cin.getline(autor, 35);
 		cout<<"ingrese la editorial"<<endl;
 		cin.getline(editorial, 35);
-		fprintf(archivo, "%s;%s;%s\n", nombre, autor, editorial);
+		cout<<"el libro en que estado esta(prestado o libre)?"<<endl;
+		cin.getline(prestado, 35);
+	
+		
+		fprintf(archivo, "| nombre del libro: %s; | autor del libro: %s; | editorial %s; | estado del libro: %s\n", nombre, autor, editorial,prestado);
 		cout<<"desea agregar otro? (s/n)"<<endl;
 		cin>>otro;
 		cin.ignore();
@@ -47,6 +55,7 @@ void agregarLibro (FILE * archivo) {
 //QUE RECIBE EL NOMBRE DEL ARCHIVO FISICO Y CUAL FUE LA
 //ELECCION DEL CONTROL AL QUE SE QUERIA ACCEDER.
 void agregar (string nombreArchivo, string control) {
+	
 	//SE CREA UN ARCHIVO CON EL NOMBRE QUE VENGA EN EL PARAMETRO
 	FILE * archivo = fopen(nombreArchivo.c_str(), "a+");
 	
@@ -81,6 +90,9 @@ void analizarLinea (char linea[], int noLinea) {
 
 //LEE LINEA POR LINEA EL ARCHIVO
 void mostrarDatos (FILE * archivo) {
+	system("cls");
+
+	
 	char lineaTmp[1000]="", linea[1000]="";
 	int noLinea = 1;
 	cout<<"No."<<endl;
@@ -93,16 +105,21 @@ void mostrarDatos (FILE * archivo) {
 		//SE PASA LA LINEA SIN SALTO AL METODO ANALIZAR LINEA PARA QUE SE MUESTRE
 		strcpy(linea, lineaSinSalto);
 		if(feof(archivo) == 0){
+			
 			analizarLinea(linea, noLinea);
 			noLinea += 1;
+	
 		}
 	}
 }
 
 //DEL MENU DE GESTION SE USA PARA MOSTRAR EL CONTENIDO DEL ARCHIVO
 void mostrar (string nombreArchivo) {
+	system("cls");
+	cout<<"***** Bienvenido a la opcion de visualizar ***** "<<endl;
 	FILE * archivo = fopen(nombreArchivo.c_str(), "a+");
 	if(archivo != NULL){
+	
 		mostrarDatos(archivo);
 		fclose(archivo);
 	}
@@ -114,12 +131,14 @@ void mostrar (string nombreArchivo) {
 //CON LA LINEA A ELIMINAR ELEGIDA POR EL USUARIO SE PROCEDE
 //A REMOVERLA DEL ARCHIVO ORIGEN
 void procesoEliminar (int lineaEliminar, string nombreArchivoIn){
+	cout<<"***** Bienvenido a la opcion de eliminar ***** "<<endl;
+	
 	FILE * archivoEntrada = fopen(nombreArchivoIn.c_str(), "a+");
 	if(archivoEntrada == NULL){
 		cout<<"No se ha podido abrir el archivo: "<<nombreArchivoIn<<endl;
 		return;
 	}
-	string rutaArchivoTmp = "C:/prueba/temp.txt";
+	string rutaArchivoTmp = "C:/Users/Samsung/Documents/GitHub/Nueva carpeta/AlgoritmosFinal2S2019/temp.txt";
 	FILE * archivoTmp = fopen(rutaArchivoTmp.c_str(), "a+");
 	if (archivoTmp == NULL){
 		cout<<"No se ha podido abrir el archivo temporal"<<endl;
@@ -156,6 +175,8 @@ void procesoEliminar (int lineaEliminar, string nombreArchivoIn){
 //SE LE PRESENTA AL USUARIO LOS DATOS ALMACENADOS EN EL ARCHIVO
 //EL USUARIO ELIGE QUE LINEA BORRAR
 void eliminar (string nombreArchivo) {
+	system("cls");
+	cout<<"***** Bienvenido a la opcion de eliminar ***** "<<endl;
 	FILE * archivo = fopen(nombreArchivo.c_str(), "a+");
 	if(archivo != NULL){
 		int linea;
@@ -181,6 +202,8 @@ void buscarEnLinea (char linea[], char busqueda[]) {
 }
 
 void buscar (string nombreArchivo) {
+	system("cls");
+	cout<<"***** Bienvenido a la opcion de buscar ***** "<<endl;
 	char busqueda[20] = "";
 	cout<<"ingrese una palabra para buscar:"<<endl;
 	cin.getline(busqueda, 20);
@@ -209,6 +232,8 @@ void buscar (string nombreArchivo) {
 //MENU DE GESTION PARA ALUMNOS O PARA BIBLIOTECA
 void menuGestion (string control, string nombreArchivo){
 	int menu=0;
+	system("cls");
+	
 	while (menu != 6){
 		cout<<"***** MENU DE CONTROL DE "<<control<<" *****"<<endl;
 		cout<<"Que desea hacer?"<<endl;
@@ -216,12 +241,16 @@ void menuGestion (string control, string nombreArchivo){
 		cin>>menu;
 		cin.ignore();
 		if(menu==1){
+			
 			agregar(nombreArchivo, control);
 		}else if(menu==2){
+			
 			buscar(nombreArchivo);
 		}else if(menu==3){
+			
 			eliminar(nombreArchivo);
 		}else if(menu==5){
+				
 			mostrar(nombreArchivo);
 		}
 	}
@@ -230,6 +259,8 @@ void menuGestion (string control, string nombreArchivo){
 //MENU PRINCIPAL DEL CUAL SE PUEDE ELEGIR SI ACCEDER A ALUMNOS O A BIBLIOTECA
 int main () {
 	int opcion = 0;
+	system("cls");
+	
 	while (opcion != 3){
 		cout<<"1. Ingresar al control de alumnos\n2. Ingresar al control biblioteca\n3. Salir"<<endl;
 		cin>>opcion;

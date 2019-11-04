@@ -1,0 +1,1 @@
+|carnet: 5190; | nombre: brian; | seccion: f
