@@ -1,1 +1,2 @@
- solita; brian duarte;  santillana;  prestado
+ solita; brian;  satillana;  prestado
+ solita; brian;  hola;  libre

@@ -180,11 +180,21 @@ void eliminar (string nombreArchivo) {
 	FILE * archivo = fopen(nombreArchivo.c_str(), "a+");
 	if(archivo != NULL){
 		int linea;
+		 string opcion ="s";
 		mostrarDatos(archivo);
 		fclose(archivo);
 		cout<<"elija la linea a borrar:"<<endl;
 		cin>>linea;
-		procesoEliminar(linea, nombreArchivo);
+		cout<<"esta seguro de eliminar la linea "<<linea<<" (s/n)"<<endl;
+		cin>>opcion;
+		if(opcion == "s" ){
+			procesoEliminar(linea, nombreArchivo);
+		}
+		else
+			cout<<"no se elimino la linea "<<linea<<endl;
+		
+		
+		
 	}
 }
 
