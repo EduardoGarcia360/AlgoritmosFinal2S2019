@@ -191,9 +191,9 @@ void eliminar (string nombreArchivo) {
 			procesoEliminar(linea, nombreArchivo);
 		}
 		else
-			cout<<"no se elimino la linea "<<linea<<endl;
+			cout<<"***** no se elimino la linea "<<linea<<" *******"<<endl;
 		
-		
+		system("pause");
 		
 	}
 }
@@ -285,5 +285,4 @@ int main () {
 	cout<<"brian duarte"<<endl;
 	cout<<"Marcelo Samayoa"<<endl;
 	cout<<"Jonatan Albeno"<<endl;
-	cout<<"William TILOM"<<endl;
 }
