@@ -125,6 +125,7 @@ void mostrar (string nombreArchivo) {
 	
 		mostrarDatos(archivo);
 		fclose(archivo);
+		system("pause");
 	}
 }
 
