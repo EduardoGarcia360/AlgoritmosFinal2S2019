@@ -299,4 +299,5 @@ int main () {
 	cout<<"brian duarte"<<endl;
 	cout<<"Marcelo Samayoa"<<endl;
 	cout<<"Jonatan Albeno"<<endl;
+	cout<<"Omar Chacón"<<endl;
 }
