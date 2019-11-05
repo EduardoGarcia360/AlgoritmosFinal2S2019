@@ -191,7 +191,9 @@ void eliminar (string nombreArchivo) {
 		cout<<"esta seguro de eliminar la linea "<<linea<<" (s/n)"<<endl;
 		cin>>opcion;
 		if(opcion == "s" ){
+			cout<<"****** La linea "<<linea<<" se elimino exitosamente ******"<<endl;
 			procesoEliminar(linea, nombreArchivo);
+			
 		}
 		else
 			cout<<"***** no se elimino la linea "<<linea<<" *******"<<endl;
