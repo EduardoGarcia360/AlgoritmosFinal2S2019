@@ -90,11 +90,12 @@ void analizarLinea (char linea[], int noLinea) {
 
 //LEE LINEA POR LINEA EL ARCHIVO
 void mostrarDatos (FILE * archivo) {
-	system("cls");
+//	system("cls");
 
 	
 	char lineaTmp[1000]="", linea[1000]="";
 	int noLinea = 1;
+	cout<<"**** Mostrando los registros actuales ****\n"<<endl;
 	cout<<"No."<<endl;
 	cout<<"Linea.- Registro"<<endl;
 	while(feof(archivo) == 0){
@@ -111,6 +112,8 @@ void mostrarDatos (FILE * archivo) {
 	
 		}
 	}
+//	system("pause");
+//	system("cls");
 }
 
 //DEL MENU DE GESTION SE USA PARA MOSTRAR EL CONTENIDO DEL ARCHIVO
@@ -175,12 +178,12 @@ void procesoEliminar (int lineaEliminar, string nombreArchivoIn){
 //SE LE PRESENTA AL USUARIO LOS DATOS ALMACENADOS EN EL ARCHIVO
 //EL USUARIO ELIGE QUE LINEA BORRAR
 void eliminar (string nombreArchivo) {
-	system("cls");
+//	system("cls");
 	cout<<"***** Bienvenido a la opcion de eliminar ***** "<<endl;
 	FILE * archivo = fopen(nombreArchivo.c_str(), "a+");
 	if(archivo != NULL){
 		int linea;
-		 string opcion ="s";
+		string opcion ="s";
 		mostrarDatos(archivo);
 		fclose(archivo);
 		cout<<"elija la linea a borrar:"<<endl;
@@ -193,18 +196,18 @@ void eliminar (string nombreArchivo) {
 		else
 			cout<<"***** no se elimino la linea "<<linea<<" *******"<<endl;
 		
-		system("pause");
-		
+//		system("pause");
+//		system("cls");
 	}
 }
 
 /***********************************************
 				B U S C A R
 ***********************************************/
-void buscarEnLinea (char linea[], char busqueda[]) {
+void buscarEnLinea (char linea[], string busqueda) {
 	char * token = strtok(linea, ";");
 	while (token != NULL){
-		if(strcmp(token, busqueda) == 0){
+		if(strcmp(token, busqueda.c_str()) == 0){
 			cout<<"valor encontrado"<<endl;
 		}
 		token = strtok(NULL, ";");
@@ -214,9 +217,9 @@ void buscarEnLinea (char linea[], char busqueda[]) {
 void buscar (string nombreArchivo) {
 	system("cls");
 	cout<<"***** Bienvenido a la opcion de buscar ***** "<<endl;
-	char busqueda[20] = "";
+	string busqueda = "";
 	cout<<"ingrese una palabra para buscar:"<<endl;
-	cin.getline(busqueda, 20);
+	cin >> busqueda;
 	FILE * archivo = fopen(nombreArchivo.c_str(), "a+");
 	if (archivo == NULL){
 		cout<<"No se ha podido abrir el archivo: "<<nombreArchivo<<endl;
@@ -224,16 +227,19 @@ void buscar (string nombreArchivo) {
 	}
 	
 	char linea[1000]="", lineaTmp[1000]="";
-	while(feof(archivo) == 0){
-		fgets(lineaTmp, 1000, archivo);
+//	string lalinea = "";
+	while(fgets(lineaTmp, 1000, archivo)){
+		fputs(lineaTmp, stdout);
 		//SE QUITA EL "SALTO DE LINEA (\n)" PARA DEJAR SOLO LA LINEA NORMAL
 		char* lineaSinSalto = strtok(lineaTmp, "\n");
 		//SE PASA LA LINEA SIN SALTO AL METODO ANALIZAR LINEA PARA QUE SE MUESTRE
 		strcpy(linea, lineaSinSalto);
 		buscarEnLinea(linea, busqueda);
 	}
-	cin.ignore();
 	fclose(archivo);
+	cin.ignore();
+//	system("pause");
+//	system("cls");
 }
 
 /***********************************************
@@ -250,9 +256,10 @@ void menuGestion (string control, string nombreArchivo){
 		cout<<"1. Agregar\n2. Buscar\n3. Eliminar\n4. Modificar\n5. Mostrar\n6. Regresar al menu principal"<<endl;
 		cin>>menu;
 		cin.ignore();
+		system("cls");
 		if(menu==1){
-			
 			agregar(nombreArchivo, control);
+			
 		}else if(menu==2){
 			
 			buscar(nombreArchivo);
@@ -263,7 +270,10 @@ void menuGestion (string control, string nombreArchivo){
 				
 			mostrar(nombreArchivo);
 		}
+//		system("pause");
+		system("cls");
 	}
+//	system("cls");
 }
 
 //MENU PRINCIPAL DEL CUAL SE PUEDE ELEGIR SI ACCEDER A ALUMNOS O A BIBLIOTECA
