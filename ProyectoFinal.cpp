@@ -242,7 +242,7 @@ void buscar (string nombreArchivo) {
 	}
 	fclose(archivo);
 	cin.ignore();
-//	system("pause");
+system("pause");
 //	system("cls");
 }
 
