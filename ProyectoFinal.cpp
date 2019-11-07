@@ -14,9 +14,9 @@ void agregarAlumno (FILE * archivo) {
 	char carnet[20]="", nombre[35]="", seccion[20]="";
 	string otro = "s";
 	while (otro == "s"){
-		cout<<"ingrese el carnet"<<endl;
+		cout<<"ingrese el carnet del estudiante"<<endl;
 		cin.getline(carnet, 20);
-		cout<<"ingrese el nombre"<<endl;
+		cout<<"ingrese el nombre del estudiante"<<endl;
 		cin.getline(nombre, 35);
 		cout<<"ingrese la seccion"<<endl;
 		cin.getline(seccion, 20);
@@ -34,13 +34,13 @@ void agregarLibro (FILE * archivo) {
 	char nombre[35]="", autor[35]="", editorial[35]="",prestado[35]="";
 	string otro = "s";
 	while (otro == "s"){
-		cout<<"ingrese el nombre"<<endl;
+		cout<<"ingrese el nombre del libro"<<endl;
 		cin.getline(nombre, 35);
-		cout<<"ingrese el autor"<<endl;
+		cout<<"ingrese el autor del libro"<<endl;
 		cin.getline(autor, 35);
 		cout<<"ingrese la editorial"<<endl;
 		cin.getline(editorial, 35);
-		cout<<"el libro en que estado esta(prestado o libre)?"<<endl;
+		cout<<"el libro en que estado esta(prestado o disponible)?"<<endl;
 		cin.getline(prestado, 35);
 	
 		
@@ -199,7 +199,7 @@ void eliminar (string nombreArchivo) {
 		fclose(archivo);
 		cout<<"elija la linea a borrar:"<<endl;
 		cin>>linea;
-		cout<<"esta seguro de eliminar la linea "<<linea<<" (s/n)"<<endl;
+		cout<<"esta seguro de eliminar la linea "<<linea<<"? (s/n)"<<endl;
 		cin>>opcion;
 		if(opcion == "s" ){
 			procesoEliminar(linea, nombreArchivo);
