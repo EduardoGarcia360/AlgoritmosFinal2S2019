@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
-
 using namespace std;
 
 /***********************************************
@@ -14,9 +13,9 @@ void agregarAlumno (FILE * archivo) {
 	char carnet[20]="", nombre[35]="", seccion[20]="";
 	string otro = "s";
 	while (otro == "s"){
-		cout<<"ingrese el carnet"<<endl;
+		cout<<"ingrese el carnet del estudiante"<<endl;
 		cin.getline(carnet, 20);
-		cout<<"ingrese el nombre"<<endl;
+		cout<<"ingrese el nombre del estudiante"<<endl;
 		cin.getline(nombre, 35);
 		cout<<"ingrese la seccion"<<endl;
 		cin.getline(seccion, 20);
@@ -34,13 +33,13 @@ void agregarLibro (FILE * archivo) {
 	char nombre[35]="", autor[35]="", editorial[35]="",prestado[35]="";
 	string otro = "s";
 	while (otro == "s"){
-		cout<<"ingrese el nombre"<<endl;
+		cout<<"ingrese el nombre del libro?"<<endl;
 		cin.getline(nombre, 35);
-		cout<<"ingrese el autor"<<endl;
+		cout<<"ingrese el nombre del autor"<<endl;
 		cin.getline(autor, 35);
 		cout<<"ingrese la editorial"<<endl;
 		cin.getline(editorial, 35);
-		cout<<"el libro en que estado esta(prestado o libre)?"<<endl;
+		cout<<"el libro en que estado esta(prestado o no prestado)?"<<endl;
 		cin.getline(prestado, 35);
 	
 		
@@ -73,6 +72,16 @@ void agregar (string nombreArchivo, string control) {
 		fclose(archivo);
 	}
 }
+
+
+
+
+
+
+
+
+
+
 
 /***********************************************
 				M O S T R A R
@@ -135,14 +144,14 @@ void mostrar (string nombreArchivo) {
 //CON LA LINEA A ELIMINAR ELEGIDA POR EL USUARIO SE PROCEDE
 //A REMOVERLA DEL ARCHIVO ORIGEN
 void procesoEliminar (int lineaEliminar, string nombreArchivoIn){
-	cout<<"***** Bienvenido a la opcion de eliminar ***** "<<endl;
+	cout<<"Se completo una accion con los siguientes datos "<<endl;//Bienvenido a la opcion de eliminar 
 	
 	FILE * archivoEntrada = fopen(nombreArchivoIn.c_str(), "a+");
 	if(archivoEntrada == NULL){
 		cout<<"No se ha podido abrir el archivo: "<<nombreArchivoIn<<endl;
 		return;
 	}
-	string rutaArchivoTmp = "C:/Users/Samsung/Documents/GitHub/Nueva carpeta/AlgoritmosFinal2S2019/temp.txt";
+	string rutaArchivoTmp = "temp.txt";
 	FILE * archivoTmp = fopen(rutaArchivoTmp.c_str(), "a+");
 	if (archivoTmp == NULL){
 		cout<<"No se ha podido abrir el archivo temporal"<<endl;
@@ -189,7 +198,7 @@ void eliminar (string nombreArchivo) {
 		fclose(archivo);
 		cout<<"elija la linea a borrar:"<<endl;
 		cin>>linea;
-		cout<<"esta seguro de eliminar la linea "<<linea<<" (s/n)"<<endl;
+		cout<<"esta seguro de eliminar la linea "<<linea<<"? (s/n)"<<endl;
 		cin>>opcion;
 		if(opcion == "s" ){
 			procesoEliminar(linea, nombreArchivo);
@@ -300,4 +309,5 @@ int main () {
 	cout<<"Marcelo Samayoa"<<endl;
 	cout<<"Jonatan Albeno"<<endl;
 	cout<<"Omar Chacón"<<endl;
+	cout<<"William Tilom"<<endl;
 }
