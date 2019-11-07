@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
+#include<windows.h>
 using namespace std;
 
 /***********************************************
@@ -13,9 +14,9 @@ void agregarAlumno (FILE * archivo) {
 	char carnet[20]="", nombre[35]="", seccion[20]="";
 	string otro = "s";
 	while (otro == "s"){
-		cout<<"ingrese el carnet del estudiante"<<endl;
+		cout<<"ingrese el carnet"<<endl;
 		cin.getline(carnet, 20);
-		cout<<"ingrese el nombre del estudiante"<<endl;
+		cout<<"ingrese el nombre"<<endl;
 		cin.getline(nombre, 35);
 		cout<<"ingrese la seccion"<<endl;
 		cin.getline(seccion, 20);
@@ -33,13 +34,13 @@ void agregarLibro (FILE * archivo) {
 	char nombre[35]="", autor[35]="", editorial[35]="",prestado[35]="";
 	string otro = "s";
 	while (otro == "s"){
-		cout<<"ingrese el nombre del libro?"<<endl;
+		cout<<"ingrese el nombre"<<endl;
 		cin.getline(nombre, 35);
-		cout<<"ingrese el nombre del autor"<<endl;
+		cout<<"ingrese el autor"<<endl;
 		cin.getline(autor, 35);
 		cout<<"ingrese la editorial"<<endl;
 		cin.getline(editorial, 35);
-		cout<<"el libro en que estado esta(prestado o disponible)?"<<endl;
+		cout<<"el libro en que estado esta(prestado o libre)?"<<endl;
 		cin.getline(prestado, 35);
 	
 		
@@ -198,7 +199,7 @@ void eliminar (string nombreArchivo) {
 		fclose(archivo);
 		cout<<"elija la linea a borrar:"<<endl;
 		cin>>linea;
-		cout<<"esta seguro de eliminar la linea "<<linea<<"? (s/n)"<<endl;
+		cout<<"esta seguro de eliminar la linea "<<linea<<" (s/n)"<<endl;
 		cin>>opcion;
 		if(opcion == "s" ){
 			procesoEliminar(linea, nombreArchivo);
@@ -251,8 +252,18 @@ void buscar (string nombreArchivo) {
 	}
 	fclose(archivo);
 	cin.ignore();
-system("pause");
+//	system("pause");
 //	system("cls");
+}
+//FUNCION PARA ORDENAR LOS TEXTOS DEL PROGRAMA
+void gotoxy(int x, int y)
+{
+ HANDLE hcon;
+ hcon = GetStdHandle(STD_OUTPUT_HANDLE);
+ COORD dwPos;
+ dwPos.X = x;
+ dwPos.Y = y;
+ SetConsoleCursorPosition(hcon,dwPos);
 }
 
 /***********************************************
@@ -264,13 +275,21 @@ void menuGestion (string control, string nombreArchivo){
 	system("cls");
 	
 	while (menu != 6){
+		gotoxy(20,0);
 		cout<<"***** MENU DE CONTROL DE "<<control<<" *****"<<endl;
+		gotoxy(30,1);
 		cout<<"Que desea hacer?"<<endl;
+		gotoxy(33,3);
 		cout<<"1. Agregar"<<endl;
+		gotoxy(34,4);
 		cout<<"2. Buscar"<<endl;
+		gotoxy(33,5);
 		cout<<"3. Eliminar"<<endl;
+		gotoxy(33,6);
 		cout<<"4. Modificar"<<endl;
+		gotoxy(34,7);
 		cout<<"5. Mostrar"<<endl;
+		gotoxy(25,8);
 		cout<<"6. Regresar al menu principal"<<endl;
 		cin>>menu;
 		cin.ignore();
@@ -319,6 +338,6 @@ int main () {
 	cout<<"brian duarte"<<endl;
 	cout<<"Marcelo Samayoa"<<endl;
 	cout<<"Jonatan Albeno"<<endl;
-	cout<<"Omar Chacon"<<endl;
+	cout<<"Omar Chacón"<<endl;
 	cout<<"William Tilom"<<endl;
 }

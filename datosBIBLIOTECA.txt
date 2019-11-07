@@ -1,2 +1,2 @@
  solita; brian;  satillana;  prestado
- principito; brian;  holita;  disponible
+ solita; brian;  hola;  libre
