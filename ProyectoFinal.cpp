@@ -74,6 +74,16 @@ void agregar (string nombreArchivo, string control) {
 	}
 }
 
+
+
+
+
+
+
+
+
+
+
 /***********************************************
 				M O S T R A R
 ***********************************************/
@@ -300,4 +310,5 @@ int main () {
 	cout<<"Marcelo Samayoa"<<endl;
 	cout<<"Jonatan Albeno"<<endl;
 	cout<<"Omar Chacón"<<endl;
+	cout<<"William Tilom"<<endl;
 }
