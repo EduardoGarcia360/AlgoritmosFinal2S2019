@@ -39,7 +39,7 @@ void agregarLibro (FILE * archivo) {
 		cin.getline(autor, 35);
 		cout<<"ingrese la editorial"<<endl;
 		cin.getline(editorial, 35);
-		cout<<"el libro en que estado esta(prestado o no prestado)?"<<endl;
+		cout<<"el libro en que estado esta(prestado o libre)?"<<endl;
 		cin.getline(prestado, 35);
 	
 		
