@@ -145,14 +145,14 @@ void mostrar (string nombreArchivo) {
 //CON LA LINEA A ELIMINAR ELEGIDA POR EL USUARIO SE PROCEDE
 //A REMOVERLA DEL ARCHIVO ORIGEN
 void procesoEliminar (int lineaEliminar, string nombreArchivoIn){
-	cout<<"***** Bienvenido a la opcion de eliminar ***** "<<endl;
+	cout<<"Se completo una accion con los siguientes datos "<<endl;//Bienvenido a la opcion de eliminar 
 	
 	FILE * archivoEntrada = fopen(nombreArchivoIn.c_str(), "a+");
 	if(archivoEntrada == NULL){
 		cout<<"No se ha podido abrir el archivo: "<<nombreArchivoIn<<endl;
 		return;
 	}
-	string rutaArchivoTmp = "C:/Users/Samsung/Documents/GitHub/Nueva carpeta/AlgoritmosFinal2S2019/temp.txt";
+	string rutaArchivoTmp = "temp.txt";
 	FILE * archivoTmp = fopen(rutaArchivoTmp.c_str(), "a+");
 	if (archivoTmp == NULL){
 		cout<<"No se ha podido abrir el archivo temporal"<<endl;
