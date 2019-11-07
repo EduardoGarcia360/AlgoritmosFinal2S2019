@@ -264,9 +264,22 @@ void menuGestion (string control, string nombreArchivo){
 	system("cls");
 	
 	while (menu != 6){
+		gotoxy(20,0);
 		cout<<"***** MENU DE CONTROL DE "<<control<<" *****"<<endl;
+		gotoxy(30,1);
 		cout<<"Que desea hacer?"<<endl;
-		cout<<"1. Agregar\n2. Buscar\n3. Eliminar\n4. Modificar\n5. Mostrar\n6. Regresar al menu principal"<<endl;
+		gotoxy(33,3);
+		cout<<"1. Agregar"<<endl;
+		gotoxy(34,4);
+		cout<<"2. Buscar"<<endl;
+		gotoxy(33,5);
+		cout<<"3. Eliminar"<<endl;
+		gotoxy(33,6);
+		cout<<"4. Modificar"<<endl;
+		gotoxy(34,7);
+		cout<<"5. Mostrar"<<endl;
+		gotoxy(25,8);
+		cout<<"6. Regresar al menu principal"<<endl;
 		cin>>menu;
 		cin.ignore();
 		system("cls");
