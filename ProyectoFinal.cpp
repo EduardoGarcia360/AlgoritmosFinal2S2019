@@ -317,9 +317,15 @@ void menuGestion (string control, string nombreArchivo){
 int main () {
 	int opcion = 0;
 	system("cls");
-	
+	gotoxy(10,3);
+	cout<<"****Elija una de las siguientes****"<<endl;
 	while (opcion != 3){
-		cout<<"1. Ingresar al control de alumnos\n2. Ingresar al control biblioteca\n3. Salir"<<endl;
+		gotoxy(10,4);
+		cout<<"1. Ingresar al control de alumnos"<<endl;
+		gotoxy(10,5);
+		cout<<"2. Ingresar al control biblioteca"<<endl;
+		gotoxy(10,6);
+		cout<<"3. Salir"<<endl;
 		cin>>opcion;
 		cin.ignore();
 		if(opcion == 1){
