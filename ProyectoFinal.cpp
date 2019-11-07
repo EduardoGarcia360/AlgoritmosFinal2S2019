@@ -252,7 +252,7 @@ void buscar (string nombreArchivo) {
 	}
 	fclose(archivo);
 	cin.ignore();
-//	system("pause");
+system("pause");
 //	system("cls");
 }
 //FUNCION PARA ORDENAR LOS TEXTOS DEL PROGRAMA
