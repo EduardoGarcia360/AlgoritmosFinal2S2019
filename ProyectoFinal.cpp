@@ -39,7 +39,7 @@ void agregarLibro (FILE * archivo) {
 		cin.getline(autor, 35);
 		cout<<"ingrese la editorial"<<endl;
 		cin.getline(editorial, 35);
-		cout<<"el libro en que estado esta(prestado o libre)?"<<endl;
+		cout<<"el libro en que estado esta(prestado o disponible)?"<<endl;
 		cin.getline(prestado, 35);
 	
 		
@@ -313,6 +313,6 @@ int main () {
 	cout<<"brian duarte"<<endl;
 	cout<<"Marcelo Samayoa"<<endl;
 	cout<<"Jonatan Albeno"<<endl;
-	cout<<"Omar Chacón"<<endl;
+	cout<<"Omar Chacon"<<endl;
 	cout<<"William Tilom"<<endl;
 }
