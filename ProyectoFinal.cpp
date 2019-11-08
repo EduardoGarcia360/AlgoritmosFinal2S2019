@@ -274,11 +274,14 @@ void menuGestion (string control, string nombreArchivo){
 				
 			mostrar(nombreArchivo);
 		}
+		
+		}
+		
 //		system("pause");
 		system("cls");
 	}
 //	system("cls");
-}
+
 
 //MENU PRINCIPAL DEL CUAL SE PUEDE ELEGIR SI ACCEDER A ALUMNOS O A BIBLIOTECA
 int main () {
