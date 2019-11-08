@@ -208,9 +208,10 @@ void buscar (string nombreArchivo) {
 	}	
 	char linea[1000]="", lineaTmp[1000]="";
 	while(fgets(lineaTmp, 1000, archivo)){
-		fputs(lineaTmp, stdout);
+//		fputs(lineaTmp, stdout);
 		//SE QUITA EL "SALTO DE LINEA (\n)" PARA DEJAR SOLO LA LINEA NORMAL
 		char* lineaSinSalto = strtok(lineaTmp, "\n");
+//		cout<<"linea sin salto: "<<lineaSinSalto<<endl;
 		//SE PASA LA LINEA SIN SALTO AL METODO ANALIZAR LINEA PARA QUE SE MUESTRE
 		strcpy(linea, lineaSinSalto);
 		buscarEnLinea(linea, busqueda);
