@@ -1,9 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
-#include<windows.h>
 using namespace std;
-
 /***********************************************
 				A G R E G A R
 ***********************************************/
@@ -26,39 +24,35 @@ void agregarAlumno (FILE * archivo) {
 		cin.ignore();
 	}
 }
-
 //AGREGA UN LIBRO AL ARCHIVO ABIERTO
 void agregarLibro (FILE * archivo) {
 	system("cls");
 	cout<<"***** Bienvenido a la opcion de agregar *****  "<<endl;
-	char nombre[35]="", autor[35]="", editorial[35]="",prestado[35]="";
+	char nombre[35]="", autor[35]="", editorial[35]="",prestado[35]="",reservado[35]="";
 	string otro = "s";
 	while (otro == "s"){
-		cout<<"ingrese el nombre del libro"<<endl;
+		cout<<"ingrese el nombre del libro?"<<endl;
 		cin.getline(nombre, 35);
-		cout<<"ingrese el autor del libro"<<endl;
+		cout<<"ingrese el nombre del autor"<<endl;
 		cin.getline(autor, 35);
 		cout<<"ingrese la editorial"<<endl;
 		cin.getline(editorial, 35);
 		cout<<"el libro en que estado esta(prestado o disponible)?"<<endl;
 		cin.getline(prestado, 35);
-	
-		
-		fprintf(archivo, " %s; %s;  %s;  %s\n", nombre, autor, editorial,prestado);
+		cout<<"reservado o libre?"<<endl;
+		cin.getline(reservado, 35);				
+		fprintf(archivo, " %s; %s;  %s;  %s; %s\n", nombre, autor, editorial,prestado,reservado);
 		cout<<"desea agregar otro? (s/n)"<<endl;
 		cin>>otro;
 		cin.ignore();
 	}
 }
-
 //DEL MENU DE GESTION SI ELIGE AGREGAR PASA A ESTE METODO
 //QUE RECIBE EL NOMBRE DEL ARCHIVO FISICO Y CUAL FUE LA
 //ELECCION DEL CONTROL AL QUE SE QUERIA ACCEDER.
 void agregar (string nombreArchivo, string control) {
-	
 	//SE CREA UN ARCHIVO CON EL NOMBRE QUE VENGA EN EL PARAMETRO
 	FILE * archivo = fopen(nombreArchivo.c_str(), "a+");
-	
 	if(archivo != NULL){
 		//USANDO EL ARCHIVO CREADO PODEMOS PARTIR A AGREGAR
 		//ALUMNOS O LIBROS CON ESTA VALIDACION
@@ -66,24 +60,12 @@ void agregar (string nombreArchivo, string control) {
 			agregarAlumno(archivo);
 		}else{
 			agregarLibro(archivo);
-		}
-		
+		}		
 		//AL FINALIZAR EL CICLO DENTRO DE LOS METODOS ANTERIORES
 		//SE CIERRA EL ARCHIVO ABIERTO.
 		fclose(archivo);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
 /***********************************************
 				M O S T R A R
 ***********************************************/
@@ -97,12 +79,8 @@ void analizarLinea (char linea[], int noLinea) {
 	}
 	cout<<"\n";
 }
-
 //LEE LINEA POR LINEA EL ARCHIVO
-void mostrarDatos (FILE * archivo) {
-//	system("cls");
-
-	
+void mostrarDatos (FILE * archivo) {	
 	char lineaTmp[1000]="", linea[1000]="";
 	int noLinea = 1;
 	cout<<"**** Mostrando los registros actuales ****\n"<<endl;
@@ -116,16 +94,11 @@ void mostrarDatos (FILE * archivo) {
 		//SE PASA LA LINEA SIN SALTO AL METODO ANALIZAR LINEA PARA QUE SE MUESTRE
 		strcpy(linea, lineaSinSalto);
 		if(feof(archivo) == 0){
-			
 			analizarLinea(linea, noLinea);
-			noLinea += 1;
-	
+			noLinea += 1;	
 		}
 	}
-//	system("pause");
-//	system("cls");
 }
-
 //DEL MENU DE GESTION SE USA PARA MOSTRAR EL CONTENIDO DEL ARCHIVO
 void mostrar (string nombreArchivo) {
 	system("cls");
@@ -204,17 +177,12 @@ void eliminar (string nombreArchivo) {
 		if(opcion == "s" ){
 			procesoEliminar(linea, nombreArchivo);
 		cout<<"****** La linea "<<linea<<" se elimino exitosamente ******"<<endl;
-			
-	
 		}
 		else
 			cout<<"***** no se elimino la linea "<<linea<<" *******"<<endl;
-		
         system("pause");
-//		system("cls");
 	}
 }
-
 /***********************************************
 				B U S C A R
 ***********************************************/
@@ -227,7 +195,6 @@ void buscarEnLinea (char linea[], string busqueda) {
 		token = strtok(NULL, ";");
 	}
 }
-
 void buscar (string nombreArchivo) {
 	system("cls");
 	cout<<"***** Bienvenido a la opcion de buscar ***** "<<endl;
@@ -238,10 +205,8 @@ void buscar (string nombreArchivo) {
 	if (archivo == NULL){
 		cout<<"No se ha podido abrir el archivo: "<<nombreArchivo<<endl;
 		return;
-	}
-	
+	}	
 	char linea[1000]="", lineaTmp[1000]="";
-//	string lalinea = "";
 	while(fgets(lineaTmp, 1000, archivo)){
 		fputs(lineaTmp, stdout);
 		//SE QUITA EL "SALTO DE LINEA (\n)" PARA DEJAR SOLO LA LINEA NORMAL
@@ -253,82 +218,44 @@ void buscar (string nombreArchivo) {
 	fclose(archivo);
 	cin.ignore();
 system("pause");
-//	system("cls");
 }
-//FUNCION PARA ORDENAR LOS TEXTOS DEL PROGRAMA
-void gotoxy(int x, int y)
-{
- HANDLE hcon;
- hcon = GetStdHandle(STD_OUTPUT_HANDLE);
- COORD dwPos;
- dwPos.X = x;
- dwPos.Y = y;
- SetConsoleCursorPosition(hcon,dwPos);
-}
-
 /***********************************************
 		M E N U S D E G E S T I O N
 ***********************************************/
 //MENU DE GESTION PARA ALUMNOS O PARA BIBLIOTECA
 void menuGestion (string control, string nombreArchivo){
 	int menu=0;
-	system("cls");
-	
+	system("cls");	
 	while (menu != 6){
-		gotoxy(20,0);
 		cout<<"***** MENU DE CONTROL DE "<<control<<" *****"<<endl;
-		gotoxy(30,1);
 		cout<<"Que desea hacer?"<<endl;
-		gotoxy(33,3);
 		cout<<"1. Agregar"<<endl;
-		gotoxy(34,4);
 		cout<<"2. Buscar"<<endl;
-		gotoxy(33,5);
 		cout<<"3. Eliminar"<<endl;
-		gotoxy(33,6);
 		cout<<"4. Modificar"<<endl;
-		gotoxy(34,7);
 		cout<<"5. Mostrar"<<endl;
-		gotoxy(25,8);
 		cout<<"6. Regresar al menu principal"<<endl;
 		cin>>menu;
 		cin.ignore();
 		system("cls");
 		if(menu==1){
 			agregar(nombreArchivo, control);
-			
 		}else if(menu==2){
-			
 			buscar(nombreArchivo);
 		}else if(menu==3){
-			
 			eliminar(nombreArchivo);
 		}else if(menu==5){
-				
 			mostrar(nombreArchivo);
 		}
-		
-		}
-		
-//		system("pause");
 		system("cls");
 	}
-//	system("cls");
-
-
+}
 //MENU PRINCIPAL DEL CUAL SE PUEDE ELEGIR SI ACCEDER A ALUMNOS O A BIBLIOTECA
 int main () {
 	int opcion = 0;
-	system("cls");
-	gotoxy(10,3);
-	cout<<"****Elija una de las siguientes****"<<endl;
+	system("cls");	
 	while (opcion != 3){
-		gotoxy(10,4);
-		cout<<"1. Ingresar al control de alumnos"<<endl;
-		gotoxy(10,5);
-		cout<<"2. Ingresar al control biblioteca"<<endl;
-		gotoxy(10,6);
-		cout<<"3. Salir"<<endl;
+		cout<<"1. Ingresar al control de alumnos\n2. Ingresar al control biblioteca\n3. Salir"<<endl;
 		cin>>opcion;
 		cin.ignore();
 		if(opcion == 1){
@@ -341,6 +268,6 @@ int main () {
 	cout<<"brian duarte"<<endl;
 	cout<<"Marcelo Samayoa"<<endl;
 	cout<<"Jonatan Albeno"<<endl;
-	cout<<"Omar Chacón"<<endl;
+	cout<<"Omar Chacon"<<endl;
 	cout<<"William Tilom"<<endl;
 }
