@@ -6,7 +6,7 @@ using namespace std;
 				A G R E G A R
 ***********************************************/
 //AGREGA UN ALUMNO AL ARCHIVO ABIERTO
-void agregarAlumno (FILE * archivo) {
+void agregarAlumno (FILE * archivo) { 
 	system("cls");
 	cout<<"***** Bienvenido a la opcion de agregar ***** "<<endl;
 	char carnet[20]="", nombre[35]="", seccion[20]="";
