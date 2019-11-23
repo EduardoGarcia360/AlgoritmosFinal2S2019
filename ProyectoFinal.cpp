@@ -271,4 +271,7 @@ int main () {
 	cout<<"Jonatan Albeno"<<endl;
 	cout<<"Omar Chacon"<<endl;
 	cout<<"William Tilom"<<endl;
+	//mucha si alguien ve este commit porfa que me escriba a mi correo: eduardo_garcia360@hotmail.com
+	//y borren mi numero ya que me lo robaron tambien les agradeceria que lo bloqueen y reporten
+	//porfa jajajaja a ver hasta cuando ven esto XD
 }
